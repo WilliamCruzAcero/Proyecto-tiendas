@@ -1,7 +1,7 @@
 import { create, getDetailProduct, search, update } from "./repository";
 import { BadRequestError } from "../shered/errors/babRequest";
 import { NotFoundError } from "../shered/errors/notFound";
-import { Product } from "./types/product";
+import type { Product } from "./types/product";
 
 export const getDetailedProduct = async (id: number) => {
 

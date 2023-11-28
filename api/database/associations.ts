@@ -5,9 +5,9 @@
 //  import express from 'express';
 //  import "./database/associations.ts"
 
-import { DatabaseInventory } from "../inventory/modelInventory";
-import { DatabaseProduct } from "../product/modelProduct";
-import { DatabaseStore } from "../store/modelStore";
+import { DatabaseInventory } from "../inventory/model";
+import { DatabaseProduct } from "../product/model";
+import { DatabaseStore } from "../store/model";
 
 DatabaseStore.hasMany(DatabaseProduct, {foreignKey: 'store'});
 DatabaseProduct.belongsTo(DatabaseStore, {foreignKey: 'store'});

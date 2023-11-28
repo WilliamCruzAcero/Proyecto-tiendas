@@ -1,7 +1,7 @@
-import { DatabaseInventory } from "../inventory/modelInventory";
+import { DatabaseInventory } from "../inventory/model";
 import { NotFoundError } from "../shered/errors/notFound";
-import { DatabaseProduct } from "./modelProduct";
-import { Product } from "./types/product";
+import { DatabaseProduct } from "./model";
+import type { Product } from "./types/product";
 
 export const getById = async ( id: string ): Promise<Product | null> => {
     const product = await DatabaseProduct.findByPk(id);

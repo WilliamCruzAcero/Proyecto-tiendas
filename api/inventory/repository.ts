@@ -1,6 +1,6 @@
 import { NotFoundError } from "api/shered/errors/notFound";
-import { DatabaseInventory } from "./modelInventory";
-import { Inventory } from "./types/inventory";
+import { DatabaseInventory } from "./model";
+import type { Inventory } from "./types/inventory";
 
 export const getById = async (id: number): Promise<Inventory | null> => {
     const store = await DatabaseInventory.findByPk(id)

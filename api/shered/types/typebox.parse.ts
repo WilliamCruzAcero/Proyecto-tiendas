@@ -1,6 +1,7 @@
-import { TArray, TIntersect, TObject, TProperties } from '@sinclair/typebox';
+import type { TArray, TIntersect, TObject, TProperties } from '@sinclair/typebox';
 import addFormats from 'ajv-formats';
-import Ajv, { ValidateFunction } from 'ajv';
+import   Ajv from 'ajv';
+import type { ValidateFunction } from 'ajv';
 import { BadRequestError } from '../errors/babRequest';
 
 const ajv = addFormats(new Ajv({}), [

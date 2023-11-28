@@ -1,6 +1,7 @@
-import { BelongsToGetAssociationMixin, CreationOptional, DataTypes, ForeignKey, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { DatabaseInventory } from "../inventory/modelInventory";
-import { DatabaseStore } from "../store/modelStore";
+import type { BelongsToGetAssociationMixin, CreationOptional, ForeignKey, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes } from "sequelize";
+import {DataTypes, Model} from 'sequelize';
+import type { DatabaseInventory } from "../inventory/model";
+import type { DatabaseStore } from "../store/model";
 import connection from "../database/connection";
 
 export class DatabaseProduct extends Model<InferAttributes<DatabaseProduct>, InferCreationAttributes<DatabaseProduct>> {

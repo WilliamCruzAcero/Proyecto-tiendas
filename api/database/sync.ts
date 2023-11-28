@@ -1,7 +1,7 @@
 import './associations';
-import { DatabaseInventory } from "../inventory/modelInventory";
-import { DatabaseProduct } from "../product/modelProduct";
-import { DatabaseStore } from "../store/modelStore";
+import { DatabaseInventory } from "../inventory/model";
+import { DatabaseProduct } from "../product/model";
+import { DatabaseStore } from "../store/model";
 
 const sync = async () => {
     await DatabaseStore.sync({ alter: true });

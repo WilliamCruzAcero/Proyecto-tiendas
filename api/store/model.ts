@@ -1,5 +1,6 @@
-import { CreationOptional, DataTypes, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { DatabaseProduct } from "../product/modelProduct";
+import type { CreationOptional, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes } from "sequelize";
+import { Model, DataTypes, } from 'sequelize'
+import type { DatabaseProduct } from "../product/model";
 import connection from "../database/connection";
 
 export class DatabaseStore extends Model<InferAttributes<DatabaseStore>, InferCreationAttributes<DatabaseStore>> {

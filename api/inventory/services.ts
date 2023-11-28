@@ -1,7 +1,6 @@
-import { DatabaseInventory } from "./modelInventory";
 import { create, getById, search, update } from "./repository";
 import { BadRequestError } from "../shered/errors/babRequest";
-import { Inventory } from "./types/inventory";
+import type { Inventory } from "./types/inventory";
 import { NotFoundError } from "api/shered/errors/notFound";
 
 export const getInventoryById = async (id: Inventory['id']) => {
