@@ -1,0 +1,1 @@
+export type ErrorCode = 500 | 400 | 403 | 401 | 404;
