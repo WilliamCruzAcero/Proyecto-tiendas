@@ -1,14 +1,17 @@
+import { associate } from "api/database/associations";
 import { DatabaseInventory } from "../inventory/model";
-import { NotFoundError } from "../shered/errors/notFound";
+import { NotFoundError } from "../shared/errors/notFound";
 import { DatabaseProduct } from "./model";
 import type { Product } from "./types/product";
+import type { ProductDetailed } from "./types/productDetailed";
 
 export const getById = async ( id: string ): Promise<Product | null> => {
     const product = await DatabaseProduct.findByPk(id);
     return product ? product.toJSON() : null;
 };
 
-export const getDetailProduct =async (id: number): Promise<Product | null > => {
+export const getDetailProduct =async (id: number): Promise<ProductDetailed | null > => {
+    associate();
     const product = await DatabaseProduct.findByPk(id, {
         include: [
             {
@@ -17,7 +20,7 @@ export const getDetailProduct =async (id: number): Promise<Product | null > => {
         ]
     });
 
-    return product? product.toJSON(): null;
+    return product? product.toJSON() as unknown as ProductDetailed : null;
 };
 
 export const search =async ( filter: Partial<Omit<Product, 'id'>> ): Promise<Product[]> => {

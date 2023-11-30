@@ -1,6 +1,6 @@
 import { create, getDetailProduct, search, update } from "./repository";
-import { BadRequestError } from "../shered/errors/babRequest";
-import { NotFoundError } from "../shered/errors/notFound";
+import { BadRequestError } from "../shared/errors/babRequest";
+import { NotFoundError } from "../shared/errors/notFound";
 import type { Product } from "./types/product";
 
 export const getDetailedProduct = async (id: number) => {

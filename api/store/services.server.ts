@@ -1,17 +1,16 @@
-import { create, getDetailStore, search, update } from "./repository";
-import { BadRequestError } from "../shered/errors/babRequest";
-import { NotFoundError } from "../shered/errors/notFound";
+import { create, getById, getDetailStore, search, update } from "./repository";
+import { BadRequestError } from "../shared/errors/babRequest";
 import type { Store } from "./types/store";
 
+export const getStoreById = async (id: number) => {
+    return getById(id);
+}
+
 export const getDetailedStore = async (id: number) => {
-
-    const store = await getDetailStore(id);
-    if (!store) throw new NotFoundError(`No hay una tienda asignada para el id: ${id}`);
-
-    return store
+    return getDetailStore(id);
 };
 
-export const createStore = async (data: Omit<Store, 'id'>): Promise<Store> => {
+export const createStore = async (data: Store): Promise<Store> => {
 
     const [existStore] = await search({
         name: data.name

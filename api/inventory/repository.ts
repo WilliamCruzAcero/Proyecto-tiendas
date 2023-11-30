@@ -1,4 +1,4 @@
-import { NotFoundError } from "api/shered/errors/notFound";
+import { NotFoundError } from "api/shared/errors/notFound";
 import { DatabaseInventory } from "./model";
 import type { Inventory } from "./types/inventory";
 

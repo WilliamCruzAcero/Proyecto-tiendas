@@ -9,7 +9,14 @@ import { DatabaseInventory } from "../inventory/model";
 import { DatabaseProduct } from "../product/model";
 import { DatabaseStore } from "../store/model";
 
-DatabaseStore.hasMany(DatabaseProduct, {foreignKey: 'store'});
-DatabaseProduct.belongsTo(DatabaseStore, {foreignKey: 'store'});
-DatabaseProduct.hasMany(DatabaseInventory, {foreignKey: 'product'});
-DatabaseInventory.belongsTo(DatabaseProduct, {foreignKey: 'product'}); 
+let associated = false;
+
+export function associate() {
+    if (!associated) {
+        DatabaseStore.hasMany(DatabaseProduct, {foreignKey: 'store'});
+        DatabaseProduct.belongsTo(DatabaseStore, {foreignKey: 'store'});
+        DatabaseProduct.hasMany(DatabaseInventory, {foreignKey: 'product'});
+        DatabaseInventory.belongsTo(DatabaseProduct, {foreignKey: 'product'});
+        associated = true;
+    }
+}
