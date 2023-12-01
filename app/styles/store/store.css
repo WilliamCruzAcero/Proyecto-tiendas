@@ -1,3 +1,19 @@
+button.btn-add {
+    display: flex;
+    float: right;
+    height: 35px;
+    position: absolute;
+    right: 60px;
+    align-items: center;
+    padding: 20px;
+    background-color: #abf3ae;
+}
+
+button:hover {
+    background-color:  var(--button-background-color) ;
+}
+/* --button-background-color: #4CAF50;
+    --button-hover-background-color: #72da76; */
 div.store {
     display: flex;
     flex-direction: row;
@@ -41,7 +57,6 @@ div.info p {
     flex-wrap: wrap;
     margin-block: 20px;
     background-color: var(--section-background-color);
-    padding: 2rem;
     border-radius: 8px;
     border: 2px;
     box-shadow: 0 0 1px #0003, 0 5px 2px #0003;

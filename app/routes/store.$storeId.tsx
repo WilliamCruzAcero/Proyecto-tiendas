@@ -3,7 +3,7 @@ import { redirect } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { getStoreById } from "api/store/services.server";
 import { getUserId } from "~/utils/session.server";
-import styles from '../components/store/store.css';
+import styles from '../styles/store/store.css';
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles }

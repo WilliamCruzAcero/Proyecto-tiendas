@@ -3,7 +3,7 @@ import { redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getDetailedStore } from "api/store/services.server";
 import { getUserId } from "~/utils/session.server";
-import styles from '../components/store/store.css';
+import styles from '../styles/store/store.css';
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
 
 export const links: LinksFunction = () => [
@@ -38,6 +38,7 @@ export default function Index() {
                 >
                 </ProductCard>
             )}
+            <button className="btn-add">Add</button>
         </>
     );
 }

@@ -3,8 +3,8 @@
     --page-background-color: #E6E6E6;
     --title-color:rgb(78 95 89);
     --ejm-background-color: #FFC107;
-    --ejm1-background-color: #4CAF50;
-    --background-image: {product.image}
+    --button-background-color: #4CAF50;
+    --button-hover-background-color: #72da76;
 }
 
 html, body {

@@ -1,4 +1,4 @@
-.contentproduct .card {
+div.contentproduct .card {
     background-color: white;
     display: flex;
     flex-direction: column-reverse;
@@ -6,22 +6,27 @@
     border: 1px solid gray;
     box-shadow: 0px 0px 5px gray;
     border-radius: 10px;
-    transition: transform .2s; 
-    margin-bottom: 1rem; 
+    transition: transform .2s;
+    margin: 1rem;
 }
 
-img.disabled {
+div.contentproduct .card p {
+    color: white;
+    margin: .2rem;
+}
+
+div.contentproduct img.disabled {
     -webkit-filter: grayscale(1);
     /* Google Chrome, Safari 6+ & Opera 15+ */
     filter: grayscale(1);
     /* Microsoft Edge and Firefox 35+ */
 }
 
-.contentproduct .card:hover {
+div.contentproduct .contentproduct .card:hover {
     transform: scale(1.1);
 }
 
-div.name-product:hover {
+div.contentproduct div.name-product:hover {
     background-color: #000000dc;
     cursor: pointer;
 }
@@ -49,6 +54,7 @@ div.name-product {
     left: 0px;
     z-index: +1;
 }
+
 .contentproduct img {
     max-width: 200px;
     height: auto;

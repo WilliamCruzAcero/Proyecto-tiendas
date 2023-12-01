@@ -1,0 +1,49 @@
+
+div.inventory {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 1rem;
+    font-size: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+form {
+    width: 100%;
+    max-width: none;
+}
+
+div.inventory label {
+    display: inline;
+    width: 100%;
+}
+
+div.inventory label span{
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+div.inventory label input {
+    margin-left: .1rem;
+    text-align: right;
+    width: 10%;
+    height: 20px;
+    box-shadow: none ;
+}
+
+div.inventory label .expiration {
+    margin-left: .2rem;
+    text-align: right;
+    width: 15%;
+    height: 20px;
+}
+    
+div.inventory label button {
+    background-color: var(--button-background-color);
+    float: right;
+}
+
+div.inventory label button:hover {
+    background-color: var(--button-hover-background-color);
+}
