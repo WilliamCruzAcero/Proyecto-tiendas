@@ -28,9 +28,9 @@ export default function InventoryCard({ inventory }: { inventory: Inventory }) {
                     />
                     <span>Vence</span>
                     <input
-                        defaultValue={inventory.expiration}
+                        value={inventory.expiration}
                         className="expiration"
-                        type="text"
+                        type="date"
                     />
                     <button type="submit">Update</button>
                 </label>

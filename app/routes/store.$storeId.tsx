@@ -1,5 +1,4 @@
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+import { redirect, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { getStoreById } from "api/store/services.server";
 import { getUserId } from "~/utils/session.server";

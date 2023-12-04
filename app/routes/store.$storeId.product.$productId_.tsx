@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { getDetailedProduct } from "api/product/services.server";
 import { AppError } from "api/shared/errors/appError";
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
-import styles from '../styles/store/productDetail.css'
+import styles from '../styles/store/productDetail.css';
 import InventoryCard, { links as InventoryLinks } from "~/components/invetoryCard/inventory";
 
 export const links: LinksFunction = () => [

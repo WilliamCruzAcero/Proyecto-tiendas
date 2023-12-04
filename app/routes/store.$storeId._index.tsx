@@ -1,10 +1,9 @@
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getDetailedStore } from "api/store/services.server";
-import { getUserId } from "~/utils/session.server";
-import styles from '../styles/store/store.css';
+import { redirect, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
+import styles from '../styles/store/store.css';
+import { getUserId } from "~/utils/session.server";
+import { getDetailedStore } from "api/store/services.server";
+import { Link, useLoaderData } from "@remix-run/react";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
@@ -38,7 +37,9 @@ export default function Index() {
                 >
                 </ProductCard>
             )}
-            <button className="btn-add">Add</button>
+            <Link className="add-product" to={`product/create`}>
+                Add
+            </Link >
         </>
     );
 }

@@ -30,7 +30,7 @@ export const search =async ( filter: Partial<Omit<Product, 'id'>> ): Promise<Pro
     return search.map(product => product.toJSON());
 }
 
-export const create = async ( data: Omit<Product, 'id'>): Promise<Product> => {
+export const create = async ( data: Omit<Product, 'id'> ): Promise<Product> => {
 
     const product = await DatabaseProduct.create({
         ...data,

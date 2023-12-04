@@ -4,12 +4,10 @@ import { AppError } from "api/shared/errors/appError";
 import { parse } from "api/shared/types/typebox.parse";
 import { stringToNumber } from "api/shared/utils/stringToNumber";
 import { createStore } from "api/store/services.server";
-import type { CreateStoreBody } from "api/store/types/createStore.body";
-import { createstoreBodyValidator } from "api/store/types/createStore.body";
+import { createstoreBodyValidator, type CreateStoreBody } from "api/store/types/createStore.body";
 
 export async function action({ request, params }: ActionFunctionArgs) {
     try {
-        
         const formData = await request.formData();       
         
         const input = parse<CreateStoreBody>(createstoreBodyValidator, {

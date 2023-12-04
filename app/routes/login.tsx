@@ -1,5 +1,4 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json } from "@remix-run/node";
 import { Form, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "api/login/login.server";
 import { AppError } from "api/shared/errors/appError";

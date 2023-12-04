@@ -10,7 +10,7 @@ export const storeModel = Type.Object({
     address: Type.String(),
     phone: Type.Number(),
     active: Type.Optional( Type.Boolean() )
-});
+})
 
 export type Store = Static<typeof storeModel>;
 export const storeValidator = validatorFactory(storeModel);

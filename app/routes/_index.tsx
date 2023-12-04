@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import { type MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
@@ -6,7 +6,6 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Store!" },
   ];
 };
-
 
 export default function Index() {
   return (
