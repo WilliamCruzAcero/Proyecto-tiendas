@@ -2,7 +2,7 @@ import { redirect, type LinksFunction, type LoaderFunctionArgs } from "@remix-ru
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { getStoreById } from "api/store/services.server";
 import { getUserId } from "~/utils/session.server";
-import styles from '../styles/store/store.css';
+import styles from './store.css';
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles }
@@ -40,5 +40,5 @@ export default function Index() {
                 <Outlet />
             </div>
         </div>
-    );
+    ); 
 }

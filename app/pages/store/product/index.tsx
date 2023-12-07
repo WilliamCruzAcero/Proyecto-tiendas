@@ -1,9 +1,16 @@
-import { redirect, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
+import { redirect, type LinksFunction, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
-import styles from '../styles/store/store.css';
+import styles from './index.css';
 import { getUserId } from "~/utils/session.server";
 import { getDetailedStore } from "api/store/services.server";
 import { Link, useLoaderData } from "@remix-run/react";
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Store" },
+        { name: "description", content: "Welcome to Store!" },
+    ];
+};
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
@@ -38,7 +45,7 @@ export default function Index() {
                 </ProductCard>
             )}
             <Link className="add-product" to={`product/create`}>
-                Add
+                Add Product
             </Link >
         </>
     );

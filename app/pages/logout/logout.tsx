@@ -1,6 +1,13 @@
-import { redirect, type ActionFunctionArgs } from "@remix-run/node";
+import { redirect, type ActionFunctionArgs, type MetaFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import { logout } from "~/utils/session.server";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Logout" },
+    { name: "description", content: "Welcome to Logout!" },
+  ];
+};
 
 export async function action({ request }: ActionFunctionArgs) {
   const cookie = await logout(request);

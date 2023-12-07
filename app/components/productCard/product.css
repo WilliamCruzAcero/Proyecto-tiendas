@@ -10,7 +10,11 @@ div.contentproduct .card {
     margin: 1rem;
 }
 
-div.contentproduct .card p {
+div.contentproduct .card:hover {
+    transform: scale(1.1);
+}
+
+div.contentproduct  p {
     color: white;
     margin: .2rem;
 }
@@ -22,9 +26,6 @@ div.contentproduct img.disabled {
     /* Microsoft Edge and Firefox 35+ */
 }
 
-div.contentproduct .contentproduct .card:hover {
-    transform: scale(1.1);
-}
 
 div.contentproduct div.name-product:hover {
     background-color: #000000dc;

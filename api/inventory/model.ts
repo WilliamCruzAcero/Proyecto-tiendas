@@ -8,7 +8,7 @@ export class DatabaseInventory extends Model<InferAttributes<DatabaseInventory>,
   declare product: ForeignKey<number>;
   declare price: number;
   declare stock: number;
-  declare expiration?: string;
+  declare expiration: string;
   declare store: number;
   declare active: boolean;
   declare createdAt: CreationOptional<Date>;

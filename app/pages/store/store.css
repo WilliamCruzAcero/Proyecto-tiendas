@@ -35,7 +35,7 @@ div.info p {
     font-size: 20px;
 }
 
-.contentproduct {
+div.contentproduct {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -45,20 +45,4 @@ div.info p {
     border: 2px;
     box-shadow: 0 0 1px #0003, 0 5px 2px #0003;
     justify-content: space-around;
-}
-
-.add-product {
-    display: flex;
-    color: black;
-    float: right;
-    position: absolute;
-    right: 60px;
-    padding: 10px;
-    border-radius: 10px;
-    width: 50px;
-    background-color: #abf3ae;
-}
-
-.add-product:hover {
-    background-color: var(--button-background-color);
 }

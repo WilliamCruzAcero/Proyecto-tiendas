@@ -35,6 +35,7 @@ export default function InventoryCard({ inventory }: { inventory: Inventory }) {
                     <button type="submit">Update</button>
                 </label>
             </Form>
+            
         </div>
 
     )

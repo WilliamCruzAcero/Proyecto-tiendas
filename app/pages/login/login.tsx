@@ -1,9 +1,16 @@
-import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json } from "@remix-run/node";
+import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json, type MetaFunction } from "@remix-run/node";
 import { Form, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "api/login/login.server";
 import { AppError } from "api/shared/errors/appError";
 import { safeRedirect } from "~/utils/safeRedirect.server";
 import { createUserSession, getUserId } from "~/utils/session.server";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login" },
+    { name: "description", content: "Welcome to Login!" },
+  ];
+};
 
 export async function action({ request }: ActionFunctionArgs) {
   try {

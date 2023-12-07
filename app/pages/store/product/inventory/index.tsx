@@ -1,10 +1,10 @@
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import { getDetailedProduct } from "api/product/services.server";
 import { AppError } from "api/shared/errors/appError";
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
-import styles from '../styles/store/productDetail.css';
-import InventoryCard, { links as InventoryLinks } from "~/components/invetoryCard/inventory";
+import styles from './inventories.css';
+import { links as InventoryLinks } from "~/components/invetoryCard/inventory";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
@@ -41,14 +41,8 @@ export default function Index() {
                     useLink={false}
                 ></ProductCard>
             </div>
-            <div className="card-inventories">
-                <h3>Inventarios</h3>
-                {productDetailed.DatabaseInventories.map(inventory =>
-                    <InventoryCard
-                        key={inventory.id}
-                        inventory={inventory}
-                    ></InventoryCard>
-                )}
+            <div className="create-inventory">
+                <Outlet />
             </div>
         </div>
     );

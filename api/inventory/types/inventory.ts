@@ -3,12 +3,12 @@ import { Type } from '@sinclair/typebox';
 import { validatorFactory } from "../../shared/types/typebox.parse";
 
 export const inventoryModel = Type.Object({
-    id: Type.Number(),
-    store: Type.Number(),
-    product: Type.Number({ minLength: 1 }),
-    price: Type.Number(),
-    stock: Type.Number(),
-    expiration: Type.Optional(Type.String({ minLength: 1 })),
+    id: Type.Number({minimum: 1}),
+    store: Type.Number({minimum: 1}),
+    product: Type.Number({minimum: 1}),
+    price: Type.Number({minimum: 0}),
+    stock: Type.Number({minimum: 0}),
+    expiration: Type.String({ minLength: 1 }),
     active: Type.Optional(Type.Boolean())
 });
 

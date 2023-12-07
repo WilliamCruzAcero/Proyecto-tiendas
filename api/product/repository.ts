@@ -9,7 +9,7 @@ export const getById = async ( id: string ): Promise<Product | null> => {
     const product = await DatabaseProduct.findByPk(id);
     return product ? product.toJSON() : null;
 };
-
+ 
 export const getDetailProduct =async (id: number): Promise<ProductDetailed | null > => {
     associate();
     const product = await DatabaseProduct.findByPk(id, {

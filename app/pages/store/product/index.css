@@ -1,0 +1,15 @@
+div.contentproduct a.add-product {
+    display: flex;
+    color: black;
+    float: right;
+    position: absolute;
+    right: 60px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 100px;
+    background-color: #abf3ae;
+}
+
+div.contentproduct a.add-product:hover {
+    background-color: var(--button-background-color);
+}

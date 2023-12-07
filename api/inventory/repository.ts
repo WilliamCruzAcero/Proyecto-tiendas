@@ -1,19 +1,11 @@
 import { NotFoundError } from "api/shared/errors/notFound";
 import { DatabaseInventory } from "./model";
 import type { Inventory } from "./types/inventory";
-import { associate } from "api/database/associations";
-import type { InventoryDetailed } from "./types/inventoryDetailed";
 
 export const getById = async (id: number): Promise<Inventory | null> => {
+    
     const store = await DatabaseInventory.findByPk(id)
     return store ? store.toJSON() : null;
-};
-
-export const getDetailInventory =async (id: number): Promise<InventoryDetailed | null > => {
-    associate();
-    const inventory = await DatabaseInventory.findByPk(id);
-
-    return inventory? inventory.toJSON() as unknown as InventoryDetailed : null;
 };
 
 export const search =async ( filter: Partial<Omit<DatabaseInventory, 'id'>> ): Promise<DatabaseInventory[]> => {
