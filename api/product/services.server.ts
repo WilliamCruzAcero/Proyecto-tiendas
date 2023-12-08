@@ -3,15 +3,27 @@ import { BadRequestError } from "../shared/errors/babRequest";
 import { NotFoundError } from "../shared/errors/notFound";
 import type { Product } from "./types/product";
 
-export const getDetailedProduct = async (id: number) => {
-
+export const getProduct = async (id: number): Promise<Product & { hasStock: 'Y' | 'N' }> => {
     const product = await getDetailProduct(id);
 
     if (!product) throw new NotFoundError(`No existe un producto asignado al id: ${id}`);
 
+    return {
+        id: product.id,
+        image: product.image,
+        store: product.store,
+        name: product.name,
+        active: product.active || false,
+        hasStock: product.DatabaseInventories.some(i => i.stock > 0) ? 'Y' : 'N'
+    }
+};
+
+export const getDetailedProduct = async (id: number) => {
+    const product = await getDetailProduct(id);
+    if (!product) throw new NotFoundError(`No existe un producto asignado al id: ${id}`);
     return product
 };
- 
+
 export const createProduct = async (data: Omit<Product, 'id'>): Promise<Product> => {
 
     const [existproduct] = await search({

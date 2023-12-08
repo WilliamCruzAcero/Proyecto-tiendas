@@ -8,7 +8,7 @@ export const inventoryModel = Type.Object({
     product: Type.Number({minimum: 1}),
     price: Type.Number({minimum: 0}),
     stock: Type.Number({minimum: 0}),
-    expiration: Type.String({ minLength: 1 }),
+    expiration: Type.String({minLength: 1}),
     active: Type.Optional(Type.Boolean())
 });
 

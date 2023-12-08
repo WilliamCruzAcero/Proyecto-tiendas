@@ -8,7 +8,7 @@ export class DatabaseInventory extends Model<InferAttributes<DatabaseInventory>,
   declare product: ForeignKey<number>;
   declare price: number;
   declare stock: number;
-  declare expiration: string;
+  declare expiration: Date;
   declare store: number;
   declare active: boolean;
   declare createdAt: CreationOptional<Date>;
@@ -40,7 +40,7 @@ DatabaseInventory.init(
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    expiration: DataTypes.STRING,
+    expiration: DataTypes.DATE,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     },

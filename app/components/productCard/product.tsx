@@ -1,13 +1,13 @@
 import type { LinksFunction } from "@remix-run/node";
 import style from "./product.css";
-import type { ProductDetailed } from "api/product/types/productDetailed";
 import { Link } from "@remix-run/react";
+import { type Product } from "api/product/types/product";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: style },
 ];
- 
-export default function ProductCard({ product, useLink = true }: { product: ProductDetailed, useLink?: boolean }) {
+
+export default function ProductCard({ product, useLink = true }: { product: Product & { hasStock: 'Y' | 'N' }, useLink?: boolean }) {
     return (
         <div className="card">
             <div className="name-product">
@@ -17,7 +17,7 @@ export default function ProductCard({ product, useLink = true }: { product: Prod
             <img
                 alt={product.name}
                 src={product.image}
-                className={product.DatabaseInventories.some(i => i.stock > 0) ? "" : "disabled"}
+                className={ product.hasStock === 'Y' ? "" : "disabled"}
             >
             </img>
         </div>

@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import { type LinksFunction } from "@remix-run/node";
 import styles from './inventory.css';
 import type { Inventory } from "api/inventory/types/inventory";
 import { Form } from "@remix-run/react";
@@ -7,13 +7,13 @@ export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
 ];
 
-export default function InventoryCard({ inventory }: { inventory: Inventory }) {
-
+export default function InventoryCard({ inventory }: { inventory: Omit<Inventory, 'expiration'> & { expiration: string}  }) {
+    console.log(inventory.expiration)
     return (
-
         <div className="inventory">
             <Form method="post" >
                 <label>
+                    <input type="hidden" name="id" defaultValue={inventory.id}/>
                     <span>Stock</span>
                     <input
                         defaultValue={inventory.stock}
@@ -28,15 +28,13 @@ export default function InventoryCard({ inventory }: { inventory: Inventory }) {
                     />
                     <span>Vence</span>
                     <input
-                        value={inventory.expiration}
-                        className="expiration"
+                        defaultValue= {inventory.expiration.split('T')[0]}
+                        name="expiration"
                         type="date"
                     />
                     <button type="submit">Update</button>
                 </label>
             </Form>
-            
         </div>
-
     )
 }

@@ -4,6 +4,7 @@ import styles from './index.css';
 import { getUserId } from "~/utils/session.server";
 import { getDetailedStore } from "api/store/services.server";
 import { Link, useLoaderData } from "@remix-run/react";
+import { AppError } from "api/shared/errors/appError";
 
 export const meta: MetaFunction = () => {
     return [
@@ -18,26 +19,36 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-    // Protected route
-    const userId = await getUserId(request);
-    if (!userId) {
-        const current = new URL(request.url);
-        const searchParams = new URLSearchParams([["redirectTo", current.pathname + current.search]]);
-        throw redirect(`/login?${searchParams}`);
+    try {
+        // Protected route
+        const userId = await getUserId(request);
+        if (!userId) {
+            const current = new URL(request.url);
+            const searchParams = new URLSearchParams([["redirectTo", current.pathname + current.search]]);
+            throw redirect(`/login?${searchParams}`);
+        }
+
+        // Protected route
+        const storeDetailed = await getDetailedStore(userId)
+        if (!storeDetailed) return redirect('create')
+        return { storeDetailed }
+    
+    } catch (error: any) {
+        if (error instanceof AppError
+        ) {
+            throw new Response(error.message, { status: error.code });
+        } else {
+            console.error(error)
+            throw new Response('InternalServerError', { status: 500 })
+        }
     }
-    // Protected route
-    const store = await getDetailedStore(userId)
-
-    if (!store) return redirect('create')
-
-    return { store }
 };
 
 export default function Index() {
-    const { store } = useLoaderData<typeof loader>();
+    const { storeDetailed } = useLoaderData<typeof loader>();
     return (
         <>
-            {store.DatabaseProducts.map(product =>
+            {storeDetailed.DatabaseProducts.map(product =>
                 <ProductCard
                     key={product.id}
                     product={product}

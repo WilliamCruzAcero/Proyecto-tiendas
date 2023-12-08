@@ -13,7 +13,7 @@ export const getInventoryById = async (id: Inventory['id']) => {
 };
 
 export const createInventory = async (data: Omit<Inventory, 'id'>): Promise<Inventory> => {
-    
+
     const [existeInventory] = await search({
         product: data.product,
         store: data.store,
@@ -27,13 +27,13 @@ export const createInventory = async (data: Omit<Inventory, 'id'>): Promise<Inve
     });
 };
 
-export const updateInventory =async (data: Partial<Omit<Inventory, 'id'>> & Pick<Inventory, 'id'>): Promise<Inventory> => {
+export const updateInventory = async (data: Partial<Omit<Inventory, 'id'>> & Pick<Inventory, 'id'>): Promise<Inventory> => {
     return update(data)
 };
 
-export const deleteProduct = async (id: Inventory["id"]): Promise<Inventory> => {
-    return update({
-        id,
-        active: false
-    });
-};
+// export const deleteProduct = async (id: Inventory["id"]): Promise<Inventory> => {
+//     return update({
+//         id,
+//         active: false
+//     });
+// };

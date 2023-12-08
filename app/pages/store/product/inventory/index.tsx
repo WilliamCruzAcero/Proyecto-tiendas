@@ -1,6 +1,6 @@
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import { getDetailedProduct } from "api/product/services.server";
+import { getProduct } from "api/product/services.server";
 import { AppError } from "api/shared/errors/appError";
 import ProductCard, { links as ProductLinks } from "~/components/productCard/product";
 import styles from './inventories.css';
@@ -16,7 +16,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     try {
         const productId = parseInt(params.productId as string);
 
-        const productDetailed = await getDetailedProduct(productId);
+        const productDetailed = await getProduct(productId);
 
         return { productDetailed };
 

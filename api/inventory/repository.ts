@@ -25,7 +25,7 @@ export const create = async (data: Omit<Inventory, 'id'>): Promise<Inventory> =>
     return inventory.toJSON();
 };
 
-export const update = async ( data: Partial<Omit<Inventory, 'id'>> & Pick<Inventory, 'id'> ): Promise<Inventory> => {
+export const update = async ( data: Partial<Omit<Inventory, 'id'>> & Pick<Inventory, 'id'>): Promise<Inventory> => {
 
     const update: Partial<Inventory> = {};
     
@@ -37,12 +37,12 @@ export const update = async ( data: Partial<Omit<Inventory, 'id'>> & Pick<Invent
         update.active = true
     } else (update.active = false)
     
-    let product = await DatabaseInventory.findByPk(data.id)
-    if( !product ) throw new NotFoundError('Producto')
+    let inventory = await DatabaseInventory.findByPk(data.id)
+    if( !inventory ) throw new NotFoundError(`No existe un inventario con el id ${data.id}`)
 
-    if (!Object.keys(update).length) return product.toJSON();
+    if (!Object.keys(update).length) return inventory.toJSON();
 
-    product = await product.update(update);
+    inventory = await inventory.update(update);
 
-    return product.toJSON()
+    return inventory.toJSON()
 }
