@@ -1,5 +1,4 @@
-import type { Static } from '@sinclair/typebox';
-import { Type } from '@sinclair/typebox';
+import { Type, type Static } from '@sinclair/typebox';
 import { validatorFactory } from "../../shared/types/typebox.parse";
 
 export const inventoryModel = Type.Object({
@@ -10,7 +9,7 @@ export const inventoryModel = Type.Object({
     stock: Type.Number({minimum: 0}),
     expiration: Type.String({minLength: 1}),
     active: Type.Optional(Type.Boolean())
-});
+}); 
 
 export type Inventory = Static<typeof inventoryModel>;
 export const inventoryValidator = validatorFactory(inventoryModel);

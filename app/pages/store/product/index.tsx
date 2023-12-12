@@ -32,7 +32,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         const storeDetailed = await getDetailedStore(userId)
         if (!storeDetailed) return redirect('create')
         return { storeDetailed }
-    
+
     } catch (error: any) {
         if (error instanceof AppError
         ) {

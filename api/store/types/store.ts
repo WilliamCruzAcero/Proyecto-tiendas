@@ -1,5 +1,4 @@
-import type { Static } from '@sinclair/typebox';
-import { Type } from '@sinclair/typebox';
+import { Type, type Static } from '@sinclair/typebox';
 import { validatorFactory } from "../../shared/types/typebox.parse";
 
 export const storeModel = Type.Object({

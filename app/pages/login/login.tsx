@@ -1,5 +1,5 @@
 import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json, type MetaFunction } from "@remix-run/node";
-import { Form, useSearchParams } from "@remix-run/react";
+import { Form, Link, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "api/login/login.server";
 import { AppError } from "api/shared/errors/appError";
 import { safeRedirect } from "~/utils/safeRedirect.server";
@@ -56,7 +56,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Login() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/";
+  const redirectTo = searchParams.get("redirectTo") || "/store";
  
   return (
     <Form method="post">
@@ -81,6 +81,7 @@ export default function Login() {
         <input name="remember" type="checkbox" />
       </label>
       <button type="submit">Login</button>
+      <Link to={'/user'}><button>Crear cuenta</button></Link>
       <input type="hidden" name="redirectTo" value={redirectTo} />
     </Form>
   );

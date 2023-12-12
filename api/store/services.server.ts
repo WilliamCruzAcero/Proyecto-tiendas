@@ -33,7 +33,7 @@ export const createStore = async (data: Store): Promise<Store> => {
 
     const [existStore] = await search({
         name: data.name
-    });
+    }); 
 
     if (existStore) throw new BadRequestError(`Ya existe una tienda con el nombre ${data.name}`);
 

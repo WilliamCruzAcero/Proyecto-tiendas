@@ -1,5 +1,4 @@
-import type { BelongsToGetAssociationMixin, CreationOptional,  ForeignKey, InferAttributes, InferCreationAttributes } from "sequelize";
-import {DataTypes, Model} from 'sequelize'
+import { Model, type BelongsToGetAssociationMixin, type CreationOptional,  type ForeignKey, type InferAttributes, type InferCreationAttributes, DataTypes } from "sequelize";
 import type { DatabaseProduct } from "../product/model";
 import connection from "../database/connection";
 
@@ -13,7 +12,7 @@ export class DatabaseInventory extends Model<InferAttributes<DatabaseInventory>,
   declare active: boolean;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
-
+ 
   declare getProduct: BelongsToGetAssociationMixin<DatabaseProduct>;
 }
 

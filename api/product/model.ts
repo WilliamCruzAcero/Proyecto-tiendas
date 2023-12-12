@@ -1,5 +1,4 @@
-import type { BelongsToGetAssociationMixin, CreationOptional, ForeignKey, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, InferAttributes, InferCreationAttributes } from "sequelize";
-import {DataTypes, Model} from 'sequelize';
+import { Model, type BelongsToGetAssociationMixin, type CreationOptional, type ForeignKey, type HasManyCreateAssociationMixin, type HasManyGetAssociationsMixin, type InferAttributes, type InferCreationAttributes, DataTypes } from "sequelize";
 import type { DatabaseInventory } from "../inventory/model";
 import type { DatabaseStore } from "../store/model";
 import connection from "../database/connection";

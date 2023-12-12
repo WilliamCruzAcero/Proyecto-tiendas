@@ -9,6 +9,7 @@ export default {
   routes(definedRoutes) {
     return definedRoutes((route) => {
       route("", "pages/index.tsx", { index: true });
+      route("/user", "pages/user/create.tsx", { index: true });
       route("login", "pages/login/login.tsx");
       route("logout", "pages/logout/logout.tsx");
       route("store/:storeId/create", "pages/store/create.tsx" )
