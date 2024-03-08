@@ -16,15 +16,10 @@ export const links: LinksFunction = () => [
 
 export async function loader({ params }: LoaderFunctionArgs) {
     try {
-        const storeId = parseInt(params.storeId as string);
         const productId = parseInt(params.productId as string);
-
         const productDetailed = await getDetailedProduct(productId);
 
-        return {
-            productDetailed,
-            storeId
-        };
+        return { productDetailed };
 
     } catch (error: any) {
         if (error instanceof AppError
@@ -71,7 +66,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 }
 
 export default function Inventories() {
-    const { productDetailed, storeId } = useLoaderData<typeof loader>();
+    const { productDetailed } = useLoaderData<typeof loader>();
     return (
         <div className="card-inventories">
             <h3>Inventarios</h3>
@@ -81,9 +76,6 @@ export default function Inventories() {
                     inventory={inventory}
                 ></InventoryCard>
             )}
-            <Link className="back-product" to={`/store/${storeId}`}>
-                Go Back
-            </Link >
             <Link className="add-product" to={`inventory/create`}>
                 Add Inventory
             </Link >

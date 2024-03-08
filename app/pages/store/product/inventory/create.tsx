@@ -1,5 +1,5 @@
-import { redirect, type ActionFunctionArgs, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, Link, useLoaderData } from "@remix-run/react";
+import { redirect, type ActionFunctionArgs, type LinksFunction } from "@remix-run/node";
+import { Form } from "@remix-run/react";
 import { createInventory } from "api/inventory/services.server";
 import { createInventoryBodyValidator, type CreateInventoryBody } from "api/inventory/types/createInventory.body";
 import { AppError } from "api/shared/errors/appError";
@@ -10,22 +10,6 @@ import { stringToNumber } from "api/shared/utils/stringToNumber";
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles }
 ];
-
-export async function loader({ params }: LoaderFunctionArgs) {
-    try {
-        const productId = parseInt(params.productId as string);
-        const storeId = parseInt(params.storeId as string);
-        return { productId, storeId};
-
-    } catch (error: any) {
-        if (error instanceof AppError
-        ) {
-            throw new Response(error.message, { status: error.code });
-        } else {
-            throw new Response('InternalServerError', { status: 500 })
-        }
-    }
-}
 
 export async function action({ request, params }: ActionFunctionArgs) {
     try {
@@ -38,8 +22,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
             stock: formData.get("stock"),
             expiration: formData.get("expiration")
         })
-        console.log(input.product)
-
+        
         await createInventory({
             store: stringToNumber(input.store, 'Tienda'),
             product: stringToNumber(input.product, 'Producto'),
@@ -60,18 +43,13 @@ export async function action({ request, params }: ActionFunctionArgs) {
 }
 
 export default function CreateInventory() {
-    const {productId, storeId} = useLoaderData<typeof loader>();
     return (
-
         <>
-            <Link className="back-inventories" to={`/store/${storeId}/product/${productId}`}>
-                Go Back
-            </Link >
             <Form method="post">
                 <label>
                     <span>Precio</span>
                     <input
-                        defaultValue={0}
+                        placeholder="0"
                         name="price"
                         type="number"
                     />
@@ -79,7 +57,7 @@ export default function CreateInventory() {
                 <label>
                     <span>Stock</span>
                     <input
-                        defaultValue={0}
+                        placeholder='0'
                         name="stock"
                         type="number"
                     />
@@ -91,9 +69,7 @@ export default function CreateInventory() {
                         type="date"
                     />
                 </label>
-
                 <button type="submit">Create</button>
-
             </Form>
         </>
     );

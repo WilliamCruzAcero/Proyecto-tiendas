@@ -7,6 +7,7 @@ export const createuserBodyModel = Type.Object({
     email: Type.String({ minLength: 1 }),
     password: Type.String({ minLength: 1 }),
     birthdate: Type.String({ minLength: 1 }),
+    role: Type.String({ minLength: 1 }),
     active: Type.Optional(Type.String())
 })
 

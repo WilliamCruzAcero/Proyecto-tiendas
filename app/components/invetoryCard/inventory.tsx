@@ -26,7 +26,7 @@ export default function InventoryCard({ inventory }: { inventory: Omit<Inventory
                         type="number"
                     />
                     <span>Vence</span>
-                    <input
+                    <input className="expiration"
                         defaultValue={inventory.expiration.split('T')[0]}
                         name="expiration"
                         type="date"

@@ -1,21 +1,3 @@
 div.create-inventory {
     padding:  25px;
 }
-
-a.back-inventories {
-    background-color: var(--button-hover-background-color);
-    color: black;
-    position: relative;
-    left: -252px;
-    top: -8px;
-    text-align: center;
-    width: 70px;
-    padding: 5px;
-    border-radius: 10px;
-    transition: transform .2s;
-}
-
-a.back-inventories:hover {
-    background-color: var(--button-background-color);
-    transform: scale(1.1);
-}

@@ -54,19 +54,3 @@ div.card-inventories .add-product {
 div.card-inventories .add-product:hover {
     background-color: var(--button-background-color);
 }
-
-div.card-inventories .back-product {
-    background-color: var(--button-hover-background-color);
-    color: black;
-    position: absolute;
-    left: 76px;
-    text-align: center;
-    width: 70px;
-    padding: 5px;
-    border-radius: 10px;
-   
-}
-
-div.card-inventories .back-product:hover {
-    background-color: var(--button-background-color);
-}

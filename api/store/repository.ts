@@ -8,7 +8,7 @@ import type { StoreDetailed } from './types/storeDetailed';
 
 export const getById = async (id: number): Promise<Store | null> => {
     const store = await DatabaseStore.findByPk(id)
-    return store ? store.toJSON() : null;
+    return store ? store.toJSON(): null;
 }
 
 export const getDetailStore = async (id: number): Promise<StoreDetailed | null> => {

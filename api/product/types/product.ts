@@ -1,5 +1,4 @@
-import type { Static } from '@sinclair/typebox';
-import { Type } from '@sinclair/typebox';
+import {type Static, Type } from '@sinclair/typebox';
 import { validatorFactory } from "../../shared/types/typebox.parse";
 
 export const productModel = Type.Object({
@@ -9,6 +8,6 @@ export const productModel = Type.Object({
     store: Type.Number(),
     active: Type.Optional(Type.Boolean())
 });
-
+ 
 export type Product = Static<typeof productModel>;
 export const productValidator = validatorFactory(productModel);

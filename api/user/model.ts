@@ -8,6 +8,7 @@ export class DatabaseUser extends Model<InferAttributes<DatabaseUser>, InferCrea
     declare email: string;
     declare password: string;
     declare birthdate: Date;
+    declare role: string;
     declare active: boolean;
     declare createdAt?: CreationOptional<Date>;
     declare updatedAt?: CreationOptional<Date>;
@@ -40,6 +41,10 @@ DatabaseUser.init(
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        role: {
+            type: new DataTypes.STRING(128),
+            allowNull: true
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,

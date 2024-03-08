@@ -1,6 +1,11 @@
 import { DatabaseUser } from "./model";
 import type { User } from "./types/user";
 
+export const getById =async (id: number): Promise<User | null>  => {
+    const user = await DatabaseUser.findByPk(id)
+    return user ? user.toJSON(): null;
+}
+
 export const search = async (filter: Partial<Omit<User, 'id'>>): Promise<User[]> => {
     const search = await DatabaseUser.findAll({
         where: filter

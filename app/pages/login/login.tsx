@@ -1,9 +1,10 @@
-import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json, type MetaFunction } from "@remix-run/node";
+import { redirect, type ActionFunctionArgs, type LoaderFunctionArgs, json, type MetaFunction, type LinksFunction } from "@remix-run/node";
 import { Form, Link, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "api/login/login.server";
 import { AppError } from "api/shared/errors/appError";
 import { safeRedirect } from "~/utils/safeRedirect.server";
 import { createUserSession, getUserId } from "~/utils/session.server";
+import style from "./login.css"
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,6 +12,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Login!" },
   ];
 };
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: style },
+];
 
 export async function action({ request }: ActionFunctionArgs) {
   try {
@@ -81,7 +86,7 @@ export default function Login() {
         <input name="remember" type="checkbox" />
       </label>
       <button type="submit">Login</button>
-      <Link to={'/user'}><button>Crear cuenta</button></Link>
+      <Link to={'/user'}>Crear cuenta</Link>
       <input type="hidden" name="redirectTo" value={redirectTo} />
     </Form>
   );
