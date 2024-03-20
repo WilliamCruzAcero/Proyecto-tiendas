@@ -25,13 +25,15 @@ export async function action({ request, params }: ActionFunctionArgs) {
             name: input.name,
             nit: input.nit,
             address: input.address,
-            phone: stringToNumber(input.phone, 'Teléfono'),
+            phone: stringToNumber(input.phone, 'Teléfono')
         });
 
         return redirect(`/store/${input.id}`);
     
     } catch (error: any) {
         if (error instanceof AppError) {
+            console.log('CREATE-STORE:', error.message)
+            alert(error.message);
             throw new Response(error.message, { status: error.code });
         } else {
             throw new Response('InternalServerError', { status: 500 })

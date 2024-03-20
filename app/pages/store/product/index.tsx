@@ -5,6 +5,7 @@ import { getUserId } from "~/utils/session.server";
 import { getDetailedStore } from "api/store/services.server";
 import { Link, useLoaderData } from "@remix-run/react";
 import { AppError } from "api/shared/errors/appError";
+import { getUserById } from "api/user/services.server";
 
 export const meta: MetaFunction = () => {
     return [
@@ -19,35 +20,40 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+    // Protected route
+    const userId = await getUserId(request);
+    if (!userId) {
+        const current = new URL(request.url);
+        const searchParams = new URLSearchParams([["redirectTo", current.pathname + current.search]]);
+        throw redirect(`/login?${searchParams}`);
+    }
+    
     try {
-        // Protected route
-        const userId = await getUserId(request);
-        if (!userId) {
-            const current = new URL(request.url);
-            const searchParams = new URLSearchParams([["redirectTo", current.pathname + current.search]]);
-            throw redirect(`/login?${searchParams}`);
-        }
-
         // Protected route
         const storeDetailed = await getDetailedStore(userId)
         if (!storeDetailed) return redirect('create')
-        return { storeDetailed }
+        
+        const user = await getUserById(userId)
+        
+        return { storeDetailed, user }
 
     } catch (error: any) {
         if (error instanceof AppError
         ) {
             throw new Response(error.message, { status: error.code });
         } else {
-            console.error(error)
             throw new Response('InternalServerError', { status: 500 })
         }
     }
 };
 
 export default function Index() {
-    const { storeDetailed } = useLoaderData<typeof loader>();
+    const { storeDetailed, user } = useLoaderData<typeof loader>();
     return (
         <>
+            <h1 className="greeting">
+                Bienvenido {user?.name} { user?.lastname}
+            </h1>
             {storeDetailed.DatabaseProducts.map(product =>
                 <ProductCard
                     key={product.id}
@@ -55,6 +61,7 @@ export default function Index() {
                 >
                 </ProductCard>
             )}
+            
             <Link className="add-product" to={`product/create`}>
                 Add Product
             </Link >

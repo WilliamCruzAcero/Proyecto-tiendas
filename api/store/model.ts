@@ -9,7 +9,7 @@ export class DatabaseStore extends Model<InferAttributes<DatabaseStore>, InferCr
   declare name: string;
   declare nit: string;
   declare address: string;
-  declare phone: number;
+  declare phone: number; 
   declare active: boolean;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
@@ -34,10 +34,13 @@ DatabaseStore.init(
       type: new DataTypes.STRING(128),
       allowNull: false
     },
-    phone : DataTypes.INTEGER,
+    phone : {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
     active: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

@@ -28,12 +28,5 @@ export const createInventory = async (data: Omit<Inventory, 'id'>): Promise<Inve
 };
 
 export const updateInventory = async (data: Partial<Omit<Inventory, 'id'>> & Pick<Inventory, 'id'>): Promise<Inventory> => {
-    return update(data)
+    return update({...data})
 };
-
-// export const deleteProduct = async (id: Inventory["id"]): Promise<Inventory> => {
-//     return update({
-//         id,
-//         active: false
-//     });
-// };

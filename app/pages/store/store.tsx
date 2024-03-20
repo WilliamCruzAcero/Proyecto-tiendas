@@ -3,6 +3,7 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import { getStoreById } from "api/store/services.server";
 import { getUserId } from "~/utils/session.server";
 import styles from './store.css';
+import HeaderCard from "~/components/header/headerCard";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles }
@@ -27,18 +28,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Index() {
     const { store } = useLoaderData<typeof loader>();
     return (
-        <div className="content">
-            <div className="store">
-                <img src={store.logo} alt="" />
-                <div className="info">
-                    <h2>{store.name}</h2>
-                    <p><span>Nit: </span>{store.nit}</p>
-                    <p><span>Dirección: </span>{store.address}</p>
-                </div>
-            </div>
+        <>
+            <HeaderCard
+                store={store}
+            >
+            </HeaderCard>
             <div className="contentproduct">
                 <Outlet />
             </div>
-        </div>
+        </>
     ); 
 }

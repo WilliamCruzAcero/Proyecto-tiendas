@@ -1,3 +1,4 @@
+import { AppError } from 'api/shared/errors/appError';
 import { associate } from '../database/associations';
 import { DatabaseInventory } from "../inventory/model";
 import { DatabaseProduct } from "../product/model";
@@ -37,12 +38,21 @@ export const search = async (filter: Partial<Omit<Store, 'id'>>): Promise<Store[
 
 export const create = async (data: Store ): Promise<Store> => {
 
-    const store = await DatabaseStore.create({
-        ...data,
-        active: data.active || true
-    })
-
-    return store.toJSON();
+    try {
+        const store = await DatabaseStore.create({
+            ...data,
+            active: data.active || true
+        })
+        
+        return store.toJSON();
+    } catch (error: any) {
+        console.log('REPOSITORY:', error.message)
+        if (error instanceof AppError) {
+            throw new Response(error.message, { status: error.code });
+        } else {
+            throw new Response('InternalServerError', { status: 500 })
+        }
+    }
 }
 
 export const update = async (data: Partial<Omit<Store, 'id'>> & Pick<Store, 'id'>): Promise<Store> => {

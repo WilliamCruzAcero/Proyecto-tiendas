@@ -33,6 +33,7 @@ export const update = async ( data: Partial<Omit<Inventory, 'id'>> & Pick<Invent
     if (data.product) update.product = data.product;
     if (data.price) update.price = data.price;
     if (data.stock) update.stock = data.stock;
+    if (data.expiration) update.expiration = data.expiration;
     if (data.active) {
         update.active = true
     } else (update.active = false)

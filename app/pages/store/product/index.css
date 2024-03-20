@@ -13,3 +13,17 @@ div.contentproduct a.add-product {
 div.contentproduct a.add-product:hover {
     background-color: var(--button-background-color);
 }
+
+div.contentproduct .greeting {
+    display: flex;
+    color: black;
+    float: right;
+    position: absolute;
+    left: 60px;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    /* width: 100px; */
+    /* background-color: #abf3ae; */
+}

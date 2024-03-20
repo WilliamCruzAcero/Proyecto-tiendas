@@ -39,8 +39,9 @@ export async function action({ request }: ActionFunctionArgs) {
             birthdate: input.birthdate,
             role: input.role,
         });
-        return null
-        // return redirect(`login`);
+        
+       
+        return null;
 
     } catch (error) {
         if (error instanceof AppError) {

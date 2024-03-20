@@ -13,5 +13,3 @@ export const productDetailedModel = Type.Intersect([
 
 export type ProductDetailed = Static<typeof productDetailedModel>;
 export const productDetailedValidator = validatorFactory(productDetailedModel);
-
-// inventoryModel

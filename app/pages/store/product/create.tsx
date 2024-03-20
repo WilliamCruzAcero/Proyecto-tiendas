@@ -15,32 +15,31 @@ export const links: LinksFunction = () => [
 export async function action({ request, params }: ActionFunctionArgs) {
     try {
         const formData = await request.formData();
-
+        
         const input = parse<CreateProductBody>(createproductBodyValidator, {
             store: params.storeId,
             name: formData.get("name"),
             image: formData.get("image")
         })
-
         await createProduct({
             name: input.name,
             image: input.image,
             store: stringToNumber(input.store, 'Tienda')
         });
-
         return redirect(`/store/${input.store}`);
 
     } catch (error: any) {
         if (error instanceof AppError) {
-            throw new Response(error.message, { status: error.code });
+            throw new Response(error.message, {status: error.code} );
         } else {
             throw new Response('InternalServerError', { status: 500 })
         }
     }
+
 }
 
 export default function CreateProduct() {
-
+   
     return (
         <div className="create-product">
             <Form method="post">
@@ -49,7 +48,7 @@ export default function CreateProduct() {
                     <input
                         name="name"
                         type="text"
-                    />
+                        />
                 </label>
                 <label>
                     <span>Image</span>
@@ -59,9 +58,7 @@ export default function CreateProduct() {
                         placeholder="https://encrypted-tbn0.gstatic.com/"
                     />
                 </label>
-
                 <button type="submit">Create</button>
-
             </Form>
         </div>
     );

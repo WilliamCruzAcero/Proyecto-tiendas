@@ -36,7 +36,6 @@ export const create = async (data: Omit<Product, 'id'>): Promise<Product> => {
         ...data,
         active: data.active || true
     })
-
     return product.toJSON();
 }
 

@@ -4,9 +4,9 @@ import type { DatabaseStore } from "../store/model";
 import connection from "../database/connection";
 
 export class DatabaseProduct extends Model<InferAttributes<DatabaseProduct>, InferCreationAttributes<DatabaseProduct>> {
-  public id!: CreationOptional<number>;
+  declare id: CreationOptional<number>;
   declare store: ForeignKey<number>;
-  public name!: string;
+  declare name: string;
   declare image: string;
   declare active: boolean;
   declare createdAt?: CreationOptional<Date>;
@@ -16,7 +16,7 @@ export class DatabaseProduct extends Model<InferAttributes<DatabaseProduct>, Inf
   declare getInventories: HasManyGetAssociationsMixin<DatabaseInventory>;
   declare getStore: BelongsToGetAssociationMixin<DatabaseStore>;
 }
-
+ 
 DatabaseProduct.init(
   {
     id: {
@@ -37,7 +37,7 @@ DatabaseProduct.init(
     updatedAt: DataTypes.DATE,
   },
   {
-    tableName: 'products',
-    sequelize: connection
+    sequelize: connection,
+    tableName: 'products'
   }
 );

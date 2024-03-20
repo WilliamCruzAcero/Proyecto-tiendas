@@ -2,6 +2,7 @@ import { create, getById, getDetailStore, search, update } from "./repository";
 import { BadRequestError } from "../shared/errors/babRequest";
 import type { Store } from "./types/store";
 import { type Product } from "api/product/types/product";
+import { AppError } from "api/shared/errors/appError";
 
 export const getStoreById = async (id: number) => {
     return getById(id);
@@ -30,16 +31,26 @@ export const getDetailedStore = async (id: number) => {
 };
 
 export const createStore = async (data: Store): Promise<Store> => {
-
-    const [existStore] = await search({
-        name: data.name
-    }); 
-
-    if (existStore) throw new BadRequestError(`Ya existe una tienda con el nombre ${data.name}`);
-
-    return create({
-        ...data
-    });
+    
+    try {
+        const [existStore] = await search({
+            name: data.name
+        }); 
+        
+        if (existStore) throw new BadRequestError(`Ya existe una tienda con el nombre ${data.name}`);
+    
+        return create({
+            ...data
+        });
+    } catch (error: any) {
+        if (error instanceof AppError) {
+            console.error('SERVICES-SERVER:', error.message)
+            alert(error.message);
+            throw new Response(error.message, { status: error.code });
+        } else {
+            throw new Response('InternalServerError', { status: 500 })
+        }
+    }
 };
 
 export const updateStore = async (data: Partial<Omit<Store, 'id'>> & Pick<Store, 'id'>): Promise<Store> => {

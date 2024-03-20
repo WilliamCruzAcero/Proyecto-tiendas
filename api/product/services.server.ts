@@ -25,12 +25,10 @@ export const getDetailedProduct = async (id: number) => {
 };
 
 export const createProduct = async (data: Omit<Product, 'id'>): Promise<Product> => {
-
     const [existproduct] = await search({
         name: data.name,
         store: data.store
     });
-
     if (existproduct) throw new BadRequestError(`Ya existe un producto ${data.name} para esta tienda`);
 
     return create({

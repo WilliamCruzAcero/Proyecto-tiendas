@@ -2,8 +2,8 @@ import { Model, type InferAttributes, type InferCreationAttributes, type Creatio
 import connection from "../database/connection";
 
 export class DatabaseUser extends Model<InferAttributes<DatabaseUser>, InferCreationAttributes<DatabaseUser>> {
-    public id!: CreationOptional<number>;
-    public name!: string;
+    declare id: CreationOptional<number>;
+    declare name: string;
     declare lastname: string;
     declare email: string;
     declare password: string;
