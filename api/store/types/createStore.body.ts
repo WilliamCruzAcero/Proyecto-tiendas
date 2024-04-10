@@ -7,7 +7,7 @@ export const createStoreBodyModel = Type.Object({
     name: Type.String({ minLength: 1 }),
     nit: Type.String({ minLength: 1 }),
     address: Type.String({ minLength: 1 }),
-    phone: Type.String(),
+    phone: Type.String({ minLength: 1 }),
     active: Type.Optional( Type.String() )
 });
 

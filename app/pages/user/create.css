@@ -1,0 +1,31 @@
+
+div.user-container {  
+    text-align: -webkit-center;
+}
+
+div.user-container form {  
+    background-color: var(--section-background-color);
+    border-radius: 8px;
+    box-shadow: 0 0 5px gray;
+}
+
+div.user-container label {
+    text-align: left;
+    padding: 1rem;
+    
+}
+
+span.resp {
+    margin-left: 10px;
+    color: rgba(255, 0, 0, 0.76);
+}
+
+button.register {
+    background-color: #abf3ae;
+    border-top-left-radius: initial;
+    border-top-right-radius: initial;   
+}
+
+button.register:hover {
+    background-color: var(--button-background-color);
+}

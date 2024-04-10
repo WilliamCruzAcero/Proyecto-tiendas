@@ -1,10 +1,10 @@
 import type { TArray, TIntersect, TObject, TProperties } from '@sinclair/typebox';
 import addFormats from 'ajv-formats';
-import   Ajv from 'ajv';
+import Ajv from 'ajv';
 import type { ValidateFunction } from 'ajv';
 import { BadRequestError } from '../errors/babRequest';
 
-const ajv = addFormats(new Ajv({}), [
+const ajv = addFormats(new Ajv({ allErrors: true }), [
   'date-time',
   'time',
   'date',
@@ -23,6 +23,14 @@ const ajv = addFormats(new Ajv({}), [
 
 export function validatorFactory<T extends TProperties>(model: TObject<T> | TIntersect | TArray) {
   return ajv.compile(model);
+}
+
+export function validate(validator: ValidateFunction, value: unknown) {
+  if (!validator(value) && validator.errors) {
+    return [...validator.errors]
+  } else {
+    return []
+  }
 }
 
 export function parse<T>(validator: ValidateFunction, value: unknown) {

@@ -1,19 +1,17 @@
-// import { UnauthorizedError } from "api/shared/errors/unauthorized";
-
 import { BadRequestError } from "api/shared/errors/babRequest";
 import { search } from "./services.server";
 import { UnauthorizedError } from "api/shared/errors/unauthorized";
 
-export async function verifyLogin( email?: string, password?: string ) {
+export async function verifyLogin( data: any ) {
   let user ;
+  const isEmailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  if (!email) throw new BadRequestError("complete el campo Email");
-  if (!password) throw new BadRequestError("complete el campo password");
+  if (!isEmailRegExp.test(data.email)) throw new BadRequestError('Debe ser un correo valido.');
   
   const [existUser] = await  search({
-    email
+    email: data.email
   })
-  
+ 
   if (!existUser) throw new UnauthorizedError("No existe un usuario con este correo");
 
   if (!existUser.active) throw new UnauthorizedError("Usuario sin autorización");
@@ -23,14 +21,3 @@ export async function verifyLogin( email?: string, password?: string ) {
     user
   }
 }
-
-// export function verifyLogin(email?: string | null, password?: string | null) {
-//   let id = 1;
-//   if (!email || !password) throw new UnauthorizedError('Unauthorized');
-
-//   if ( email === 'williamcruzacero@gmail.com') id=2
-
-//   return {
-//     id
-//   }
-// }

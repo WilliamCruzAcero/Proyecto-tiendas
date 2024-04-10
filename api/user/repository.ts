@@ -20,5 +20,5 @@ export const create = async (data: Omit<User, 'id'>): Promise<User> => {
         active: data.active || true
     })
 
-    return user.toJSON();
+    return user? user.toJSON(): null;
 }

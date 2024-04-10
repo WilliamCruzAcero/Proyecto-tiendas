@@ -46,8 +46,8 @@ export const create = async (data: Store ): Promise<Store> => {
         
         return store.toJSON();
     } catch (error: any) {
-        console.log('REPOSITORY:', error.message)
         if (error instanceof AppError) {
+            console.log('REPOSITORY:', error.message)
             throw new Response(error.message, { status: error.code });
         } else {
             throw new Response('InternalServerError', { status: 500 })
