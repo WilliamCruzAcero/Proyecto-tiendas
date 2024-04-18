@@ -47,3 +47,40 @@ export default connection;
 //     }
 // }
 // export default connecDB;
+
+
+//    X;UGzFQtG8Or     WpPay7tCHA;Q
+
+
+//   dsv6dYVDZf;O
+
+// test_1'@'localhost   test125A;#
+
+
+//  CODIGO PARA LA INSTANCIA
+// #!/bin/bash -ex
+
+// #Update yum
+// yum -y update
+
+// # Add node´s source repo
+// curl -sL https://rpm.nodesource.com/setup_20.x | bash -
+
+// # Install nodejs
+// yum -y install nodejs
+
+// # Create a dedicated directory for the application
+// mkdir -p /var/app
+
+// # Get the app form S3
+// wget https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/ILT-TF-100-TECESS-5/app/app.zip
+
+// # unzip it into a specific folder
+// unzip app.zip -d /var/app/
+// cd /var/app/
+
+// # Install dependencies
+// npm installl
+
+// # Start your app
+// npm start 
